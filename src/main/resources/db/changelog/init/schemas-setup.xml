@@ -1,0 +1,31 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="001" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_AUTOMATIC_PAYMENT_BK.sql"/>
+    </changeSet>
+
+    <changeSet id="002" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_LS_INTEREST_BK.sql"/>
+    </changeSet>
+
+    <changeSet id="003" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SAVINGS_BANK.sql"/>
+    </changeSet>
+
+    <changeSet id="004" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SAVINGS_CONTRACT.sql"/>
+    </changeSet>
+
+    <changeSet id="005" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SAVINGS_TRANSACTIONS.sql"/>
+    </changeSet>
+
+    <changeSet id="006" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SAVINGS_UPDATE_HISTORY.sql"/>
+    </changeSet>
+
+</databaseChangeLog>

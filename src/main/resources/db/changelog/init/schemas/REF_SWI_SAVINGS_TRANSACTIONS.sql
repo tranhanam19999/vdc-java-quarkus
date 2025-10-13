@@ -1,0 +1,41 @@
+--------------------------------------------------------
+--  File created - Friday-October-10-2025   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table REF_SWI_SAVINGS_TRANSACTIONS
+--------------------------------------------------------
+
+  CREATE TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" 
+   (	"SWI_TRANSACTION_ID" VARCHAR2(20), 
+	"SWI_CONTRACT_ID" NUMBER, 
+	"SWI_AMOUNT" NUMBER, 
+	"SWI_TRANSACTION_TYPE" VARCHAR2(20), 
+	"SWI_LAST_TOTAL_BALANCE" NUMBER, 
+	"SWI_UPDATED_BALANCE" NUMBER, 
+	"SWI_CREATED_AT" DATE, 
+	"SWI_UPDATED_AT" DATE, 
+	"SWI_TRANSACTION_STATUS" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
+--  DDL for Index REF_SWI_SAVINGS_TRANSACTIONS_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ODS"."REF_SWI_SAVINGS_TRANSACTIONS_PK" ON "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" ("SWI_TRANSACTION_ID") 
+  ;
+--------------------------------------------------------
+--  Constraints for Table REF_SWI_SAVINGS_TRANSACTIONS
+--------------------------------------------------------
+
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" MODIFY ("SWI_TRANSACTION_ID" NOT NULL ENABLE);
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" MODIFY ("SWI_CONTRACT_ID" NOT NULL ENABLE);
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" MODIFY ("SWI_AMOUNT" NOT NULL ENABLE);
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" MODIFY ("SWI_TRANSACTION_TYPE" NOT NULL ENABLE);
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" MODIFY ("SWI_UPDATED_BALANCE" NOT NULL ENABLE);
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" ADD CONSTRAINT "REF_SWI_SAVINGS_TRANSACTIONS_PK" PRIMARY KEY ("SWI_TRANSACTION_ID")
+  USING INDEX  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REF_SWI_SAVINGS_TRANSACTIONS
+--------------------------------------------------------
+
+  ALTER TABLE "ODS"."REF_SWI_SAVINGS_TRANSACTIONS" ADD CONSTRAINT "REF_SWI_SAVINGS_TRANSACTIONS_FK1" FOREIGN KEY ("SWI_CONTRACT_ID")
+	  REFERENCES "ODS"."REF_SWI_SAVINGS_CONTRACT" ("SWI_ID") ON DELETE CASCADE ENABLE;
