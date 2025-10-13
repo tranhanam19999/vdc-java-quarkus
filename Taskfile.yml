@@ -1,0 +1,60 @@
+version: "3"
+
+vars:
+  DB_URL: "jdbc:oracle:thin:$APP_USER/$APP_USER_PASSWORD//$ORACLE_HOST:$ORACLE_PORT/$ORACLE_PDB"
+  # DB_USER: "postgres"
+  # DB_PASS: "postgres"
+  CHANGELOG: "src/main/resources/db/changelog/db.changelog-master.xml"
+
+dotenv: ['.env']
+tasks:
+  default:
+    cmds:
+      - task -l
+    silent: true
+
+  start:dev:
+    desc: "Start Quarkus in dev mode"
+    cmds:
+      - ./mvnw quarkus:dev
+
+  migrate:up:
+    desc: "Run Liquibase migrations (up)"
+    cmds:
+      - |
+        ./mvnw liquibase:update \
+          -Dquarkus.liquibase.change-log={{.CHANGELOG}} \
+          -Dquarkus.datasource.jdbc.url=$DB_URL \
+          -Dquarkus.datasource.username=$DB_USER \
+          -Dquarkus.datasource.password=$DB_PASS
+
+  migrate:down:
+    desc: "Rollback the last Liquibase changeSet"
+    cmds:
+      - |
+        ./mvnw liquibase:rollback \
+          -Dliquibase.rollbackCount=1 \
+          -Dquarkus.liquibase.change-log={{.CHANGELOG}} \
+          -Dquarkus.datasource.jdbc.url=$DB_URL \
+          -Dquarkus.datasource.username=$DB_USER \
+          -Dquarkus.datasource.password=$DB_PASS
+
+  migrate:status:
+    desc: "Show Liquibase migration status"
+    cmds:
+      - |
+        ./mvnw liquibase:status \
+          -Dquarkus.liquibase.change-log={{.CHANGELOG}} \
+          -Dquarkus.datasource.jdbc.url=$DB_URL \
+          -Dquarkus.datasource.username=$DB_USER \
+          -Dquarkus.datasource.password=$DB_PASS
+
+  clean:
+    desc: "Clean project build files"
+    cmds:
+      - ./mvnw clean
+
+  provision:
+    desc: "Setup database using dockers and swagger if exists..."
+    cmds:
+      - docker compose up -d
