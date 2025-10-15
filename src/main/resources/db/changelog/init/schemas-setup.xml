@@ -4,7 +4,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="001" author="you">
+    <!-- <changeSet id="001" author="you">
         <sqlFile path="db/changelog/init/schemas/REF_SWI_AUTOMATIC_PAYMENT_BK.sql"/>
     </changeSet>
 
@@ -26,6 +26,13 @@
 
     <changeSet id="006" author="you">
         <sqlFile path="db/changelog/init/schemas/REF_SWI_SAVINGS_UPDATE_HISTORY.sql"/>
+    </changeSet> -->
+    <changeSet id="001" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SCHEMA_CREATION.sql"/>
+    </changeSet>
+
+    <changeSet id="002" author="you">
+        <sqlFile path="db/changelog/init/schemas/REF_SWI_SCHEMA_CONSTRAINTS.sql"/>
     </changeSet>
 
 </databaseChangeLog>

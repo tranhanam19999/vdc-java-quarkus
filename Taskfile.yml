@@ -1,7 +1,7 @@
 version: "3"
 
 vars:
-  DB_URL: "jdbc:oracle:thin:$APP_USER/$APP_USER_PASSWORD//$ORACLE_HOST:$ORACLE_PORT/$ORACLE_PDB"
+  DB_URL: "jdbc:oracle:thin:$DB_USER/$DB_USER_PASSWORD//$ORACLE_HOST:$ORACLE_PORT/$ORACLE_PDB"
   # DB_USER: "postgres"
   # DB_PASS: "postgres"
   CHANGELOG: "src/main/resources/db/changelog/db.changelog-master.xml"
@@ -21,6 +21,7 @@ tasks:
   migrate:up:
     desc: "Run Liquibase migrations (up)"
     cmds:
+      # - ./mvnw quarkus:add-extension -Dextensions="quarkus-liquibase"
       - |
         ./mvnw liquibase:update \
           -Dquarkus.liquibase.change-log={{.CHANGELOG}} \
