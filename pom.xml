@@ -60,6 +60,15 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>23.3.0.23.09</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-resteasy-jackson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +123,21 @@
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.29.2</version>
+                <configuration>
+                    <changeLogFile>src/main/resources/db/changelog/master.xml</changeLogFile>
+                    <!-- <url>${DB_URL}</url>
+                    <username>${DB_USER}</username>
+                    <password>${DB_USER_PASSWORD}</password> -->
+                    <url>jdbc:oracle:thin:ODS/ods123@//localhost:1521/FREEPDB1</url>
+                    <username>ODS</username>
+                    <password>ods123</password>
+                    <driver>oracle.jdbc.OracleDriver</driver>
                 </configuration>
             </plugin>
         </plugins>
